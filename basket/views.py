@@ -1,5 +1,5 @@
+from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
-from users.models import User
 from products.models import Product
 from basket.models import Basket
 
@@ -22,3 +22,7 @@ def remove_product(request, product_id):
     product = Basket.objects.filter(id=product_id)
     product.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
