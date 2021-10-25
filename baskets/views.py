@@ -1,16 +1,16 @@
 from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from products.models import Product
-from baskets.models import Basket
+from baskets.models import Baskets
 
 
 @login_required
 def basket_add(request, product_id):
     product = Product.objects.get(id=product_id)
-    basket = Basket.objects.filter(user=request.user, product=product)
+    basket = Baskets.objects.filter(user=request.user, product=product)
 
     if not basket.exists():
-        Basket.objects.create(user=request.user, product=product, quantity=1)
+        Baskets.objects.create(user=request.user, product=product, quantity=1)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         basket = basket.first()
@@ -21,7 +21,7 @@ def basket_add(request, product_id):
 
 @login_required
 def basket_remove(request, product_id):
-    basket = Basket.objects.filter(id=product_id)
+    basket = Baskets.objects.filter(id=product_id)
     basket.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
