@@ -3,7 +3,7 @@ from users.models import User
 from products.models import Product
 
 
-class Basket(models.Model):
+class Baskets(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -14,5 +14,3 @@ class Basket(models.Model):
 
     def sum(self):
         return self.product.price * self.quantity
-
-

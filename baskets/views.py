@@ -1,28 +1,24 @@
-from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
 from products.models import Product
-from basket.models import Basket
+from baskets.models import Baskets
 
 
 def basket_add(request, product_id):
     product = Product.objects.get(id=product_id)
-    baskets = Basket.objects.filter(user=request.user, product=product)
+    basket = Baskets.objects.filter(user=request.user, product=product)
 
-    if not baskets.exists():
-        Basket.objects.create(user=request.user, product=product, quantity=1)
+    if not basket.exists():
+        Baskets.objects.create(user=request.user, product=product, quantity=1)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
-        basket = baskets.first()
+        basket = basket.first()
         basket.quantity += 1
         basket.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def remove_product(request, product_id):
-    product = Basket.objects.filter(id=product_id)
-    product.delete()
+def basket_remove(request, product_id):
+    basket = Baskets.objects.filter(id=product_id)
+    basket.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-
 

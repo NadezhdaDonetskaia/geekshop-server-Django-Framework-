@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     'products.apps.ProductsConfig',
     'users',
-    'basket',
+    'baskets',
 ]
 
 MIDDLEWARE = [
