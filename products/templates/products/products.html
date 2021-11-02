@@ -8,7 +8,8 @@
 
 {% block content %}
 <!-- Page Content -->
-    <div class="container">
+    <div class="products_list">
+        <div class="container">
 
         <div class="row">
 
@@ -70,9 +71,13 @@
                                 <p class="card-text">{{ product.description }}</p>
                             </div>
                             <div class="card-footer text-center">
-                                <a class="btn btn-outline-success" href="{% url 'baskets:basket_add' product.id %}">
-                                    Отправить в корзину
-                                </a>
+                                <form action="{% url 'baskets:basket_add' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input id="inner_basket" name="{{ basket.id }}" class="btn btn-outline-success" product="{{ product.id }}" type="submit" value="Добавить в корзину">
+                                </form>
+{#                                <a id="inner_basket"  class="btn btn-outline-success" href="{% url 'baskets:basket_add' product.id %}">#}
+{#                                    Отправить в корзину#}
+{#                                </a>#}
                             </div>
                         </div>
                     </div>
@@ -97,6 +102,7 @@
 
         </div>
 
+    </div>
     </div>
 {% endblock %}
 
