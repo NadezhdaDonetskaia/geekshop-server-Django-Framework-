@@ -6,6 +6,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from baskets.models import Baskets
+from users.models import User
 
 
 def login(request):
@@ -30,7 +31,7 @@ def login(request):
 def registration(request):
 
     def send_verify_link(user):
-        verify_link = reverse('user:verify', args=[user.email, user.activation_key])
+        verify_link = reverse('users:verify', args=[user.email, user.activation_key])
         subject = f'Для активации пользователя {user.username} пройдите по ссылке'
         message = f'Для подтверждения учетной записи {user.username} на портале\n' \
                   f'{settings.DOMAIN_NAME} пройдите по ссылке {settings.DOMAIN_NAME}{verify_link}'
@@ -58,18 +59,17 @@ def logout(request):
 
 def verify(request, email, activate_key):
     try:
-        user = UserLoginForm.objects.get(email=email)
+        user = User.objects.get(email=email)
         if user and user.activation_key == activate_key and not user.is_activation_key_expired:
             user.activation_key = ''
             user.activation_key_expires = None
             user.is_active = True
             user.save(update_fields=['activation_key', 'activation_key_expires', 'is_active'])
             auth.login(request, user)
-            return render(request, 'user/verification.html')
+            return render(request, 'users/verification.html')
     except Exception:
         pass
-    else:
-        return render(request, 'user/verification.html')
+    return render(request, 'users/verification.html')
 
 
 @login_required
