@@ -46,10 +46,7 @@ INSTALLED_APPS = [
     'admins',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.google.GoogleOAuth2',
-)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,3 +157,9 @@ EMAIL_FILE_PATH = 'tmp/emails/'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'API key 1'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'AIzaSyDXRlfh55zD0Cq1a7bJ7z-7eRkaQN-DJw4'
+LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+)
