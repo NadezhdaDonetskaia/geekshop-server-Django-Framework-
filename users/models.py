@@ -23,3 +23,17 @@ class User(AbstractUser):
     def save_delete(self):
         self.is_active = False
         self.save()
+
+
+class UserProfile(models.Model):
+    MALE = 'M'
+    FEMALE = 'W'
+
+    GENDER_CHOICES = (
+        (MALE, 'Мужчина'),
+        (FEMALE, 'Женщина'),
+    )
+
+    user = models.OneToOneField(User, null=False, db_index=True, on_delete=models.CASCADE)
+    about = models.TextField(verbose_name='О себе', blank=True, null=True)
+    gender = models.CharField(verbose_name='пол', choices=GENDER_CHOICES, blank=True, max_length=2)
