@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0JTQu9GPINCw0LrRgtC40LLQsNGG0LjQuCDQv9C+0LvRjNC30L7QstCw0YLQtdC7?=
+ =?utf-8?b?0Y8gbmV3X3Rlc3Q1INC/0YDQvtC50LTQuNGC0LUg0L/QviDRgdGB0YvQu9C60LU=?=
+From: django@geekshop.local
+To: test@test.ru
+Date: Wed, 30 Mar 2022 11:03:10 -0000
+Message-ID: <164863819051.2240644.11913129178602556969@nella-Inspiron-5547>
+
+Для подтверждения учетной записи new_test5 на портале
+http://localhost:8000 пройдите по ссылке http://localhost:8000/users/verify/test@test.ru/535682f0971f662bb345d9b09a440f2013d0f4a4/
+-------------------------------------------------------------------------------
